@@ -1,6 +1,7 @@
 using FalconWallet.API.Common.Persistence;
 using FalconWallet.API.Features.MultiCurrency.Common;
 using FalconWallet.API.Features.MultiCurrency.CreateCurrency;
+using FalconWallet.API.Features.MultiCurrency.UpdateConversionRate;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,4 +29,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.AddCreateCurrencyEndPoint();
+app.AddUpdateConversionRateEndPoint();
+
 app.Run();
