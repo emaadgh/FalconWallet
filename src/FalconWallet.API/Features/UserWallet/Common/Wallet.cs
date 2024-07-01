@@ -1,4 +1,4 @@
-﻿using FalconWallet.API.Features.MultiCurrency;
+﻿using FalconWallet.API.Features.MultiCurrency.Common;
 
 namespace FalconWallet.API.Features.UserWallet.Domain;
 
