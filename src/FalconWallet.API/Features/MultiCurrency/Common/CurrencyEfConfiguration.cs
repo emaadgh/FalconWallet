@@ -28,9 +28,12 @@ public class CurrencyEfConfiguration : IEntityTypeConfiguration<Currency>
         builder.Property(x => x.ConversionRate)
             .IsRequired(true)
             .HasColumnType(WalletDbContextSchema.DefaultDecimalColumnType);
-        
 
         builder.Property(x => x.LastModifyOnUtc)
             .IsRequired();
+
+        builder.HasMany(x => x.Wallets)
+               .WithOne(z => z.Currency)
+               .HasForeignKey(z => z.CurrencyId);
     }
 }

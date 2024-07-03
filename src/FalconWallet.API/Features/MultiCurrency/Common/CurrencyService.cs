@@ -20,12 +20,7 @@ public class CurrencyService(WalletDbContext walletDbContext)
             throw new Exception("Invalid Conversion Rate");
         }
 
-        var newCurrency = new Currency
-        {
-            Name = name,
-            Code = code,
-            ConversionRate = conversionRate
-        };
+        var newCurrency = Currency.Create(name, code, conversionRate);
 
         await walletDbContext.Currencies.AddAsync(newCurrency, cancellationToken);
         await walletDbContext.SaveChangesAsync(cancellationToken);

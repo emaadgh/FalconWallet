@@ -14,4 +14,9 @@ public static class WalletDbContextSchema
     {
         public const string TableName = "Currencies";
     }
+
+    public static class Wallet
+    {
+        public const string TableName = "Wallets";
+    }
 }
