@@ -1,4 +1,5 @@
 ﻿using FalconWallet.API.Features.MultiCurrency.Common;
+using FalconWallet.API.Features.Transactions.Common;
 using FalconWallet.API.Features.UserWallet.Common;
 
 namespace FalconWallet.API.Features.UserWallet.Domain;
@@ -13,7 +14,7 @@ public class Wallet
     public int CurrencyId { get; private set; }
     public Currency Currency { get; private set; } = null!;
     public WalletStatus Status { get; private set; }
-
+    public ICollection<Transaction>? Transactions { get; private set; }
     public static Wallet Create(Guid userId,
                                 string? title,
                                 int currencyId)

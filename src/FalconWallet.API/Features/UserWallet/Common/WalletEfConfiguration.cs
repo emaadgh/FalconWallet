@@ -35,5 +35,9 @@ public class WalletEfConfiguration : IEntityTypeConfiguration<Wallet>
         builder.Property(x => x.Status)
                .IsRequired(true)
                .HasDefaultValue(WalletStatus.None);
+
+        builder.HasMany(x => x.Transactions)
+               .WithOne(z => z.Wallet)
+               .HasForeignKey(z => z.WalletId);
     }
 }
