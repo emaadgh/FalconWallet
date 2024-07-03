@@ -7,7 +7,7 @@ public static class Endpoint
 {
     public static IEndpointRouteBuilder AddUpdateConversionRateEndPoint(this IEndpointRouteBuilder endpointRouteBuilder)
     {
-        endpointRouteBuilder.MapPatch("/Currency/{currencyId:required}", async (
+        endpointRouteBuilder.MapPatch("/currency/{currencyId:required}", async (
             [FromRoute(Name = "currencyId")] int id,
             [FromBody] UpdateConversionRateRequest request,
             CurrencyService currencyService,

@@ -10,7 +10,7 @@ public static class Endpoint
 {
     public static IEndpointRouteBuilder AddUpdateTitleEndPoint(this IEndpointRouteBuilder endpointRouteBuilder)
     {
-        endpointRouteBuilder.MapPatch("/Wallet/{walletId:guid:required}", async (
+        endpointRouteBuilder.MapPatch("/wallet/{walletId:guid:required}", async (
             [FromRoute(Name = "walletId")] Guid walletId,
             [FromBody] UpdateTitleRequest request,
             WalletService walletService,

@@ -8,7 +8,7 @@ public static class Endpoint
 {
     public static IEndpointRouteBuilder AddCreateWalletEndPoint(this IEndpointRouteBuilder endpointRouteBuilder)
     {
-        endpointRouteBuilder.MapPost("/Wallet/", async (
+        endpointRouteBuilder.MapPost("/wallet/", async (
             [FromBody] CreateWalletRequest request,
             WalletService walletService,
             CancellationToken cancellationToken) =>
