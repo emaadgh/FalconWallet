@@ -47,4 +47,9 @@ public class CurrencyService(WalletDbContext walletDbContext)
         currency.UpdateConversionRate(conversionRate);
         await walletDbContext.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task<bool> HasByIdAsync(int currencyId, CancellationToken cancellationToken = default)
+    {
+        return await walletDbContext.Currencies.AnyAsync(x => x.Id == currencyId, cancellationToken);
+    }
 }
