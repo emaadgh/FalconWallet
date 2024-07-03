@@ -33,4 +33,9 @@ public class Wallet
     {
         Title = title;
     }
+
+    public void SuspendWallet()
+    {
+        Status = WalletStatus.Suspend;
+    }
 }

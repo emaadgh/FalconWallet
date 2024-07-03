@@ -33,13 +33,28 @@ public class WalletService(CurrencyService currencyService,
 
     public async Task UpdateTitleAsync(Guid walletId, string? title, CancellationToken cancellationToken = default)
     {
-        Wallet? wallet = await walletDbContext.Wallets.FirstOrDefaultAsync(x => x.Id == walletId);
+        Wallet wallet = await GetWalletFromDbAsync(walletId, cancellationToken);
+
+        wallet.UpdateTitle(title);
+        await walletDbContext.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task SuspendWalletAsync(Guid walletId, CancellationToken cancellationToken)
+    {
+        Wallet wallet = await GetWalletFromDbAsync(walletId, cancellationToken);
+
+        wallet.SuspendWallet();
+        await walletDbContext.SaveChangesAsync(cancellationToken);
+    }
+
+    private async Task<Wallet> GetWalletFromDbAsync(Guid walletId, CancellationToken cancellationToken)
+    {
+        Wallet? wallet = await walletDbContext.Wallets.FirstOrDefaultAsync(x => x.Id == walletId, cancellationToken);
         if (wallet == null)
         {
             throw new Exception($"Wallet with {walletId} not found");
         }
 
-        wallet.UpdateTitle(title);
-        await walletDbContext.SaveChangesAsync(cancellationToken);
+        return wallet;
     }
 }
