@@ -11,4 +11,18 @@ public class Transaction
     public decimal Amount { get; private set; }
     public TransactionType Type { get; private set; }
     public DateTime CreatedOn { get; private set; }
+
+    public static Transaction CreateDepositTransaction(Guid walletId,
+                                                       decimal amount,
+                                                       string description)
+    {
+        Transaction transaction = new Transaction();
+        transaction.WalletId = walletId;
+        transaction.Description = description;
+        transaction.Amount = amount;
+        transaction.Type = TransactionType.Deposit;
+        transaction.CreatedOn = DateTime.UtcNow;
+
+        return transaction;
+    }
 }

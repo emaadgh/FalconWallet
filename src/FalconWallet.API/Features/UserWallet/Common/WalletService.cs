@@ -47,6 +47,22 @@ public class WalletService(CurrencyService currencyService,
         await walletDbContext.SaveChangesAsync(cancellationToken);
     }
 
+    public async Task<bool> IsWalletAvailable(Guid walletId, CancellationToken cancellationToken)
+    {
+        Wallet? wallet = await GetWalletFromDbAsync(walletId, cancellationToken);
+
+        return wallet.Status == WalletStatus.Active;
+    }
+
+    internal async Task Deposit(Guid walletId, decimal amount, CancellationToken cancellationToken)
+    {
+        Wallet? wallet = await GetWalletFromDbAsync(walletId, cancellationToken);
+
+        wallet.IncreaseBalance(amount);
+
+        await walletDbContext.SaveChangesAsync(cancellationToken);
+    }
+
     private async Task<Wallet> GetWalletFromDbAsync(Guid walletId, CancellationToken cancellationToken)
     {
         Wallet? wallet = await walletDbContext.Wallets.FirstOrDefaultAsync(x => x.Id == walletId, cancellationToken);

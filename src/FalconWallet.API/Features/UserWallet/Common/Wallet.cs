@@ -39,4 +39,9 @@ public class Wallet
     {
         Status = WalletStatus.Suspend;
     }
+
+    public void IncreaseBalance(decimal amount)
+    {
+        Balance += amount;
+    }
 }
