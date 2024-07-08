@@ -1,4 +1,5 @@
 ﻿using FalconWallet.API.Features.MultiCurrency.Common;
+using FalconWallet.API.Features.Transactions.Common;
 using FalconWallet.API.Features.UserWallet.Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,8 @@ public class WalletDbContext : DbContext
 
     public DbSet<Wallet> Wallets => Set<Wallet>();
     public DbSet<Currency> Currencies => Set<Currency>();
+
+    public DbSet<Transaction> Transactions => Set<Transaction>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
