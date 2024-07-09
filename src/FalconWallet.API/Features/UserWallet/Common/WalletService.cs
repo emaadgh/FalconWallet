@@ -54,11 +54,25 @@ public class WalletService(CurrencyService currencyService,
         return wallet.Status == WalletStatus.Active;
     }
 
-    internal async Task Deposit(Guid walletId, decimal amount, CancellationToken cancellationToken)
+    internal async Task DepositAsync(Guid walletId, decimal amount, CancellationToken cancellationToken)
     {
         Wallet? wallet = await GetWalletFromDbAsync(walletId, cancellationToken);
 
         wallet.IncreaseBalance(amount);
+
+        await walletDbContext.SaveChangesAsync(cancellationToken);
+    }
+
+    internal async Task WithdrawAsync(Guid walletId, decimal amount, CancellationToken cancellationToken)
+    {
+        Wallet? wallet = await GetWalletFromDbAsync(walletId, cancellationToken);
+
+        if (wallet.Balance - amount < 0)
+        {
+            throw new Exception($"Insufficient funds in the wallet {walletId}");
+        }
+
+        wallet.DecreaseBalance(amount);
 
         await walletDbContext.SaveChangesAsync(cancellationToken);
     }

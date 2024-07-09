@@ -25,4 +25,18 @@ public class Transaction
 
         return transaction;
     }
+
+    public static Transaction CreateWithdrawTransaction(Guid walletId,
+                                                         decimal amount,
+                                                         string description)
+    {
+        Transaction transaction = new Transaction();
+        transaction.WalletId = walletId;
+        transaction.Description = description;
+        transaction.Amount = amount;
+        transaction.Type = TransactionType.Withdraw;
+        transaction.CreatedOn = DateTime.UtcNow;
+
+        return transaction;
+    }
 }

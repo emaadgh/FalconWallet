@@ -44,4 +44,9 @@ public class Wallet
     {
         Balance += amount;
     }
+
+    public void DecreaseBalance(decimal amount)
+    {
+        Balance -= amount;
+    }
 }
