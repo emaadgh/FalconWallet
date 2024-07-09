@@ -8,25 +8,28 @@ namespace FalconWallet.API.Features.UserWallet.Common;
 public class WalletService(CurrencyService currencyService,
                            WalletDbContext walletDbContext)
 {
+    private readonly CurrencyService _currencyService = currencyService;
+    private readonly WalletDbContext _walletDbContext = walletDbContext;
+
     public async Task<Wallet> CreateAsync(Guid userId,
                                           string? title,
                                           int currencyId,
                                           CancellationToken cancellationToken)
     {
-        if (!await currencyService.HasByIdAsync(currencyId, cancellationToken))
+        if (!await _currencyService.HasByIdAsync(currencyId, cancellationToken))
         {
-            throw new Exception($"Currency {currencyId} not found!");
+            throw new CurrencyNotFoundException(currencyId);
         }
 
-        if (await walletDbContext.Wallets.AnyAsync(x => x.UserId == userId && x.CurrencyId == currencyId))
+        if (await _walletDbContext.Wallets.AnyAsync(x => x.UserId == userId && x.CurrencyId == currencyId))
         {
-            throw new Exception($"Wallet {currencyId} for {userId} already exists!");
+            throw new WalletForUserAlreadyExistException(currencyId, userId);
         }
 
         Wallet wallet = Wallet.Create(userId, title, currencyId);
 
-        await walletDbContext.Wallets.AddAsync(wallet, cancellationToken);
-        await walletDbContext.SaveChangesAsync(cancellationToken);
+        await _walletDbContext.Wallets.AddAsync(wallet, cancellationToken);
+        await _walletDbContext.SaveChangesAsync(cancellationToken);
 
         return wallet;
     }
@@ -36,7 +39,7 @@ public class WalletService(CurrencyService currencyService,
         Wallet wallet = await GetWalletFromDbAsync(walletId, cancellationToken);
 
         wallet.UpdateTitle(title);
-        await walletDbContext.SaveChangesAsync(cancellationToken);
+        await _walletDbContext.SaveChangesAsync(cancellationToken);
     }
 
     public async Task SuspendWalletAsync(Guid walletId, CancellationToken cancellationToken)
@@ -44,7 +47,7 @@ public class WalletService(CurrencyService currencyService,
         Wallet wallet = await GetWalletFromDbAsync(walletId, cancellationToken);
 
         wallet.SuspendWallet();
-        await walletDbContext.SaveChangesAsync(cancellationToken);
+        await _walletDbContext.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<bool> IsWalletAvailable(Guid walletId, CancellationToken cancellationToken)
@@ -60,7 +63,7 @@ public class WalletService(CurrencyService currencyService,
 
         wallet.IncreaseBalance(amount);
 
-        await walletDbContext.SaveChangesAsync(cancellationToken);
+        await _walletDbContext.SaveChangesAsync(cancellationToken);
     }
 
     internal async Task WithdrawAsync(Guid walletId, decimal amount, CancellationToken cancellationToken)
@@ -69,20 +72,20 @@ public class WalletService(CurrencyService currencyService,
 
         if (wallet.Balance - amount < 0)
         {
-            throw new Exception($"Insufficient funds in the wallet {walletId}");
+            throw new InsufficientFundsInWalletException(walletId);
         }
 
         wallet.DecreaseBalance(amount);
 
-        await walletDbContext.SaveChangesAsync(cancellationToken);
+        await _walletDbContext.SaveChangesAsync(cancellationToken);
     }
 
     private async Task<Wallet> GetWalletFromDbAsync(Guid walletId, CancellationToken cancellationToken)
     {
-        Wallet? wallet = await walletDbContext.Wallets.FirstOrDefaultAsync(x => x.Id == walletId, cancellationToken);
+        Wallet? wallet = await _walletDbContext.Wallets.FirstOrDefaultAsync(x => x.Id == walletId, cancellationToken);
         if (wallet == null)
         {
-            throw new Exception($"Wallet with {walletId} not found");
+            throw new WalletNotFoundException(walletId);
         }
 
         return wallet;
