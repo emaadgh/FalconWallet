@@ -4,6 +4,7 @@ using FalconWallet.API.Features.MultiCurrency.CreateCurrency;
 using FalconWallet.API.Features.MultiCurrency.UpdateConversionRate;
 using FalconWallet.API.Features.Transactions.Common;
 using FalconWallet.API.Features.Transactions.DepositToWallet;
+using FalconWallet.API.Features.Transactions.WalletHistory;
 using FalconWallet.API.Features.Transactions.WithdrawFromWallet;
 using FalconWallet.API.Features.UserWallet.Common;
 using FalconWallet.API.Features.UserWallet.CreateWallet;
@@ -44,5 +45,6 @@ app.AddUpdateTitleEndPoint();
 app.AddSuspendWalletEndPoint();
 app.AddDepositToWalletEndPoint();
 app.AddWithdrawFromWalletEndPoint();
+app.AddWalletHistoryEndPoint();
 
 app.Run();
