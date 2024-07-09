@@ -15,7 +15,6 @@ public class WalletDbContext : DbContext
 
     public DbSet<Wallet> Wallets => Set<Wallet>();
     public DbSet<Currency> Currencies => Set<Currency>();
-
     public DbSet<Transaction> Transactions => Set<Transaction>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
