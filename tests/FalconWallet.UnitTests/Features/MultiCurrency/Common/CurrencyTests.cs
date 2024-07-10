@@ -1,7 +1,7 @@
 ﻿using FalconWallet.API.Features.MultiCurrency.Common;
 using FluentAssertions;
 
-namespace FalconWallet.UnitTests.Features.MultiCurrency;
+namespace FalconWallet.UnitTests.Features.MultiCurrency.Common;
 public class CurrencyTests
 {
     [Fact]
