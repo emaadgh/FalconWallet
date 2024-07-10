@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FalconWallet.API", "src\FalconWallet.API\FalconWallet.API.csproj", "{3960F46E-DC49-4C19-A3F3-BD6D3C90ADE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FalconWallet.API", "src\FalconWallet.API\FalconWallet.API.csproj", "{3960F46E-DC49-4C19-A3F3-BD6D3C90ADE7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8DDA00AB-E9FB-4448-9B1C-67C3578B29B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FalconWallet.UnitTests", "tests\FalconWallet.UnitTests\FalconWallet.UnitTests.csproj", "{C3734A39-7A65-457E-9D65-D6162892332A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FalconWallet.UnitTests", "tests\FalconWallet.UnitTests\FalconWallet.UnitTests.csproj", "{C3734A39-7A65-457E-9D65-D6162892332A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7698BF78-BB4F-48C7-B616-C5669796EF76}"
 EndProject
