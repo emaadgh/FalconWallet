@@ -1,4 +1,5 @@
-﻿using FalconWallet.API.Common;
+﻿using AutoMapper;
+using FalconWallet.API.Common;
 using FalconWallet.API.Features.MultiCurrency.Common;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,11 +12,12 @@ public static class Endpoint
         endpointRouteBuilder.MapPost("/currency", async (
             [FromBody] CreateCurrencyRequest request,
             CurrencyService currencyService,
+            IMapper mapper,
             CancellationToken cancellationToken) =>
         {
             Currency currency = await currencyService.CreateAsync(request.Code, request.Name, request.ConversionRate, cancellationToken);
 
-            return new CreateCurrencyResponse(currency.Id, currency.Name, currency.Code);
+            return mapper.Map<CreateCurrencyResponse>(currency);
         }).Validator<CreateCurrencyRequest>()
           .WithTags(CurrencyEndpointSchema.CurrencyTag);
 

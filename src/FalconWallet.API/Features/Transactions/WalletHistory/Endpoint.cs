@@ -1,4 +1,5 @@
-﻿using FalconWallet.API.Features.Transactions.Common;
+﻿using AutoMapper;
+using FalconWallet.API.Features.Transactions.Common;
 using FalconWallet.API.Features.Transactions.DepositToWallet;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,19 +12,12 @@ public static class Endpoint
         endpointRouteBuilder.MapGet("/transaction/{walletId:guid:required}", async (
             [FromRoute(Name = "walletId")] Guid walletId,
             TransactionService transactionService,
+            IMapper mapper,
             CancellationToken cancellationToken) =>
         {
             List<Transaction> transactions = await transactionService.GetTransactionsForWalletAsync(walletId, cancellationToken);
 
-            List<TransactionDto> transactionsDtoList = new List<TransactionDto>();
-            foreach (Transaction transaction in transactions)
-            {
-                transactionsDtoList.Add(new TransactionDto(transaction.CreatedOn,
-                                                           transaction.Description,
-                                                           transaction.Amount,
-                                                           transaction.Type,
-                                                           transaction.Type.ToString()));
-            }
+            var transactionsDtoList = mapper.Map<List<TransactionDto>>(transactions);
 
             return Results.Ok(transactionsDtoList);
         }).WithTags(TransactionEndpointSchema.TransactionTag);
