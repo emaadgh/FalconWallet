@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FalconWallet.UnitTests", "t
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7698BF78-BB4F-48C7-B616-C5669796EF76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FalconWallet.IntegrationTests", "tests\FalconWallet.IntegrationTests\FalconWallet.IntegrationTests.csproj", "{46A3D34A-A9CD-45E4-9169-E9FA138FD8F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{C3734A39-7A65-457E-9D65-D6162892332A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3734A39-7A65-457E-9D65-D6162892332A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3734A39-7A65-457E-9D65-D6162892332A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46A3D34A-A9CD-45E4-9169-E9FA138FD8F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46A3D34A-A9CD-45E4-9169-E9FA138FD8F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46A3D34A-A9CD-45E4-9169-E9FA138FD8F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46A3D34A-A9CD-45E4-9169-E9FA138FD8F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3960F46E-DC49-4C19-A3F3-BD6D3C90ADE7} = {8DDA00AB-E9FB-4448-9B1C-67C3578B29B1}
 		{C3734A39-7A65-457E-9D65-D6162892332A} = {7698BF78-BB4F-48C7-B616-C5669796EF76}
+		{46A3D34A-A9CD-45E4-9169-E9FA138FD8F8} = {7698BF78-BB4F-48C7-B616-C5669796EF76}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89D4B917-F9C0-4F9D-AAB2-9DA634AA1B01}
