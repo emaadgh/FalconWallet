@@ -31,6 +31,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddValidatorsFromAssemblies(domainAssemblies);
 
+builder.Services.AddAutoMapper(domainAssemblies);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
