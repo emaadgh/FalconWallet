@@ -1,5 +1,5 @@
 ﻿using FalconWallet.API.Common.Persistence;
-using FalconWallet.API.Features.UserWallet.Domain;
+using FalconWallet.API.Features.UserWallet.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

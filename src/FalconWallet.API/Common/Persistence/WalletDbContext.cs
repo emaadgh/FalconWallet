@@ -1,6 +1,6 @@
 ﻿using FalconWallet.API.Features.MultiCurrency.Common;
 using FalconWallet.API.Features.Transactions.Common;
-using FalconWallet.API.Features.UserWallet.Domain;
+using FalconWallet.API.Features.UserWallet.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace FalconWallet.API.Common.Persistence;

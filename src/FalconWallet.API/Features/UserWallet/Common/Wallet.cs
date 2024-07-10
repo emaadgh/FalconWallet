@@ -1,8 +1,7 @@
 ﻿using FalconWallet.API.Features.MultiCurrency.Common;
 using FalconWallet.API.Features.Transactions.Common;
-using FalconWallet.API.Features.UserWallet.Common;
 
-namespace FalconWallet.API.Features.UserWallet.Domain;
+namespace FalconWallet.API.Features.UserWallet.Common;
 
 public class Wallet
 {

@@ -1,8 +1,5 @@
 ﻿using FalconWallet.API.Common;
-using FalconWallet.API.Features.MultiCurrency.Common;
-using FalconWallet.API.Features.MultiCurrency.CreateCurrency;
 using FalconWallet.API.Features.UserWallet.Common;
-using FalconWallet.API.Features.UserWallet.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FalconWallet.API.Features.UserWallet.UpdateTitle;
