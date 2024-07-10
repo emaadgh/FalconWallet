@@ -10,12 +10,14 @@ using FalconWallet.API.Features.UserWallet.Common;
 using FalconWallet.API.Features.UserWallet.CreateWallet;
 using FalconWallet.API.Features.UserWallet.SuspendWallet;
 using FalconWallet.API.Features.UserWallet.UpdateTitle;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var domainAssemblies = AppDomain.CurrentDomain.GetAssemblies();
 
+// Add services to the container.
 builder.Services.AddDbContext<WalletDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString(WalletDbContextSchema.DefaultConnectionStringName)));
 
@@ -26,6 +28,8 @@ builder.Services.AddScoped<TransactionService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddValidatorsFromAssemblies(domainAssemblies);
 
 var app = builder.Build();
 

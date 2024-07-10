@@ -1,4 +1,5 @@
-﻿using FalconWallet.API.Features.Transactions.Common;
+﻿using FalconWallet.API.Common;
+using FalconWallet.API.Features.Transactions.Common;
 using FalconWallet.API.Features.UserWallet.Common;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,8 @@ public static class Endpoint
                                                    cancellationToken);
 
             return Results.Ok("Deposit added to the wallet");
-        }).WithTags("Transaction");
+        }).Validator<DepositToWalletRequest>()
+          .WithTags("Transaction");
 
         return endpointRouteBuilder;
     }

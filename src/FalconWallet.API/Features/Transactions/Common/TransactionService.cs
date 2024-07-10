@@ -11,7 +11,7 @@ internal class TransactionService(WalletService walletService,
     private readonly WalletService _walletService = walletService;
     private readonly WalletDbContext _walletDbContext = walletDbContext;
 
-    public async Task DepositeAsync(Guid walletId, decimal amount, string description, CancellationToken cancellationToken)
+    public async Task DepositeAsync(Guid walletId, decimal amount, string? description, CancellationToken cancellationToken)
     {
         await ValidateTransactionAsync(walletId, amount, cancellationToken);
 
@@ -38,7 +38,7 @@ internal class TransactionService(WalletService walletService,
         }
     }
 
-    internal async Task WithdrawAsync(Guid walletId, decimal amount, string description, CancellationToken cancellationToken)
+    internal async Task WithdrawAsync(Guid walletId, decimal amount, string? description, CancellationToken cancellationToken)
     {
         await ValidateTransactionAsync(walletId, amount, cancellationToken);
 

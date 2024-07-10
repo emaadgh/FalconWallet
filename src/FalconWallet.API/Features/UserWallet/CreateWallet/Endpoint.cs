@@ -1,4 +1,5 @@
-﻿using FalconWallet.API.Features.UserWallet.Common;
+﻿using FalconWallet.API.Common;
+using FalconWallet.API.Features.UserWallet.Common;
 using FalconWallet.API.Features.UserWallet.Domain;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,8 @@ public static class Endpoint
             Wallet wallet = await walletService.CreateAsync(request.UserId, request.Title, request.CurrencyId, cancellationToken);
 
             return new CreateWalletResponse(wallet.Id);
-        }).WithTags("Wallet");
+        }).Validator<CreateWalletRequest>()
+          .WithTags("Wallet");
 
         return endpointRouteBuilder;
     }

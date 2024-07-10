@@ -1,4 +1,5 @@
-﻿using FalconWallet.API.Features.Transactions.Common;
+﻿using FalconWallet.API.Common;
+using FalconWallet.API.Features.Transactions.Common;
 using FalconWallet.API.Features.Transactions.DepositToWallet;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,8 @@ public static class Endpoint
                                                    cancellationToken);
 
             return Results.Ok("Withdraw amount removed from the wallet");
-        }).WithTags("Transaction");
+        }).Validator<WithdrawFromWalletRequest>()
+          .WithTags("Transaction");
 
         return endpointRouteBuilder;
     }
