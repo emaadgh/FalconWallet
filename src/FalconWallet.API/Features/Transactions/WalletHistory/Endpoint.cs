@@ -26,7 +26,7 @@ public static class Endpoint
             }
 
             return Results.Ok(transactionsDtoList);
-        }).WithTags("Transaction");
+        }).WithTags(TransactionEndpointSchema.TransactionTag);
 
         return endpointRouteBuilder;
     }

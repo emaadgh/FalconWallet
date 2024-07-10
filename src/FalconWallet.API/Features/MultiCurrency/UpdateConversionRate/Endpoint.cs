@@ -18,7 +18,7 @@ public static class Endpoint
 
             return Results.Ok("Currency conversion rate updated");
         }).Validator<UpdateConversionRateRequest>()
-          .WithTags("Currency");
+          .WithTags(CurrencyEndpointSchema.CurrencyTag);
 
         return endpointRouteBuilder;
     }

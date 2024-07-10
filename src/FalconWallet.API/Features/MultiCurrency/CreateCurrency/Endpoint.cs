@@ -17,7 +17,7 @@ public static class Endpoint
 
             return new CreateCurrencyResponse(currency.Id, currency.Name, currency.Code);
         }).Validator<CreateCurrencyRequest>()
-          .WithTags("Currency");
+          .WithTags(CurrencyEndpointSchema.CurrencyTag);
 
         return endpointRouteBuilder;
     }

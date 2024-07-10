@@ -16,7 +16,7 @@ public static class Endpoint
             await walletService.SuspendWalletAsync(walletId, cancellationToken);
 
             return Results.Ok("Wallet has been suspended");
-        }).WithTags("Wallet");
+        }).WithTags(WalletEndpointSchema.WalletTag);
 
         return endpointRouteBuilder;
     }

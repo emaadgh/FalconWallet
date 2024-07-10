@@ -21,7 +21,7 @@ public static class Endpoint
 
             return Results.Ok("Deposit added to the wallet");
         }).Validator<DepositToWalletRequest>()
-          .WithTags("Transaction");
+          .WithTags(TransactionEndpointSchema.TransactionTag);
 
         return endpointRouteBuilder;
     }

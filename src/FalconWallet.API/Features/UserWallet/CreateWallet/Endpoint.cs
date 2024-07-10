@@ -18,7 +18,7 @@ public static class Endpoint
 
             return new CreateWalletResponse(wallet.Id);
         }).Validator<CreateWalletRequest>()
-          .WithTags("Wallet");
+          .WithTags(WalletEndpointSchema.WalletTag);
 
         return endpointRouteBuilder;
     }

@@ -21,7 +21,7 @@ public static class Endpoint
 
             return Results.Ok("Withdraw amount removed from the wallet");
         }).Validator<WithdrawFromWalletRequest>()
-          .WithTags("Transaction");
+          .WithTags(TransactionEndpointSchema.TransactionTag);
 
         return endpointRouteBuilder;
     }

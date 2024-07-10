@@ -21,7 +21,7 @@ public static class Endpoint
 
             return Results.Ok("Wallet title updated");
         }).Validator<UpdateTitleRequest>()
-          .WithTags("Wallet");
+          .WithTags(WalletEndpointSchema.WalletTag);
 
         return endpointRouteBuilder;
     }
