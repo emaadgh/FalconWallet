@@ -14,7 +14,7 @@ public static class Endpoint
             TransactionService transactionService,
             CancellationToken cancellationToken) =>
         {
-            await transactionService.DepositeAsync(request.WalletId,
+            await transactionService.DepositAsync(request.WalletId,
                                                    request.Amount,
                                                    request.Description,
                                                    cancellationToken);
