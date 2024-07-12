@@ -131,3 +131,4 @@ Contributions are welcome! If you'd like to enhance FalconWallet, you can submit
 ## License
 
 This project is licensed under the MIT License.
+Inspired by lessons from [ThisIsNabi's](https://github.com/thisisnabi/) live coding sessions.
