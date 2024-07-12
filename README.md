@@ -11,6 +11,15 @@ FalconWallet is a backend service built with ASP.NET Core, specifically designed
 - **Transaction Handling**: Deposit, withdraw, and track wallet transactions.
 - **Atomic Transactions**: Ensure transactional integrity with atomic operations.
 
+## Technology Stack
+- **Framework**: ASP.NET Core
+- **Database**: SQL Server
+- **API Design**: Minimal APIs
+- **Validation**: Fluent Validation
+- **Object Mapping**: AutoMapper
+- **Containerization**: Docker
+- **Container Orchestration**: Docker Compose
+
 ## Diagrams
 
 ### Currency Management
