@@ -82,6 +82,21 @@ FalconWallet is a backend service built with ASP.NET Core, specifically designed
     - Once the API is running, you can use tools like **Swagger** or **Postman** to interact with the endpoints.
     - Visit the Swagger UI at `https://localhost:<PORT>/swagger/index.html` to explore the API documentation interactively.
 
+## Dockerizing with Dockerfile and Docker Compose
+
+The FalconWallet can be easily containerized using DockerFile and Docker Compose to orchestrate multiple containers. Docker provides a consistent environment across different systems, making deploying and managing applications easier.
+
+To Dockerize the FalconWallet and run it with Docker Compose, follow these steps:
+
+1. Ensure you have Docker installed on your system.
+2. Navigate to the root directory of the FalconWallet project.
+3. Create a `.env` file beside the `docker-compose.yml` file.
+4. Add the following environment variable to the `.env` file:
+```
+SA_PASSWORD=preferedpassword
+```
+Replace `preferedpassword` with your preferred SQL Server SA password.
+
 ## AppSettings.json Configuration
 
 Please note that `appsettings.json` files are not included in the Git repository. These files typically contain sensitive information such as database connection strings, API keys, and other configuration settings specific to the environment.
