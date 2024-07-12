@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  db:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${SA_PASSWORD}
+    ports:
+      - "1433:1433"
+  falconwallet.api:
+    image: ${DOCKER_REGISTRY-}falconwalletapi
+    build:
+      context: .
+      dockerfile: src/FalconWallet.API/Dockerfile
+    depends_on:
+      - db
