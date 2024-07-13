@@ -8,6 +8,7 @@ using FalconWallet.API.Features.Transactions.WalletHistory;
 using FalconWallet.API.Features.Transactions.WithdrawFromWallet;
 using FalconWallet.API.Features.UserWallet.Common;
 using FalconWallet.API.Features.UserWallet.CreateWallet;
+using FalconWallet.API.Features.UserWallet.GetWallet;
 using FalconWallet.API.Features.UserWallet.SuspendWallet;
 using FalconWallet.API.Features.UserWallet.UpdateTitle;
 using FluentValidation;
@@ -52,5 +53,6 @@ app.AddSuspendWalletEndPoint();
 app.AddDepositToWalletEndPoint();
 app.AddWithdrawFromWalletEndPoint();
 app.AddWalletHistoryEndPoint();
+app.AddGetWalletEndPoint();
 
 app.Run();

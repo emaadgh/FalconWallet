@@ -80,9 +80,28 @@ public class WalletService(CurrencyService currencyService,
         await _walletDbContext.SaveChangesAsync(cancellationToken);
     }
 
+    internal async Task<Wallet> GetWalletAsync(Guid walletId, CancellationToken cancellationToken)
+    {
+        return await GetWalletWithCurrencyFromDbAsync(walletId, cancellationToken);
+    }
+
     private async Task<Wallet> GetWalletFromDbAsync(Guid walletId, CancellationToken cancellationToken)
     {
-        Wallet? wallet = await _walletDbContext.Wallets.FirstOrDefaultAsync(x => x.Id == walletId, cancellationToken);
+        Wallet? wallet = await _walletDbContext.Wallets
+                                               .FirstOrDefaultAsync(x => x.Id == walletId, cancellationToken);
+        if (wallet == null)
+        {
+            throw new WalletNotFoundException(walletId);
+        }
+
+        return wallet;
+    }
+
+    private async Task<Wallet> GetWalletWithCurrencyFromDbAsync(Guid walletId, CancellationToken cancellationToken)
+    {
+        Wallet? wallet = await _walletDbContext.Wallets
+                                               .Include(w => w.Currency)
+                                               .FirstOrDefaultAsync(x => x.Id == walletId, cancellationToken);
         if (wallet == null)
         {
             throw new WalletNotFoundException(walletId);
