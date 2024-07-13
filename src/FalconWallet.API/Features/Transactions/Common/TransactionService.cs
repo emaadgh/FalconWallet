@@ -1,6 +1,7 @@
 ﻿
 using FalconWallet.API.Common.Persistence;
 using FalconWallet.API.Features.UserWallet.Common;
+using Microsoft.EntityFrameworkCore;
 using System.Threading;
 
 namespace FalconWallet.API.Features.Transactions.Common;
@@ -35,6 +36,7 @@ internal class TransactionService(WalletService walletService,
         catch (Exception)
         {
             await dbTransaction.RollbackAsync(cancellationToken);
+            throw;
         }
     }
 
@@ -62,6 +64,7 @@ internal class TransactionService(WalletService walletService,
         catch (Exception)
         {
             await dbTransaction.RollbackAsync(cancellationToken);
+            throw;
         }
     }
 
@@ -86,8 +89,8 @@ internal class TransactionService(WalletService walletService,
             throw new WalletNotAvailableException(walletId);
         }
 
-        return _walletDbContext.Transactions.Where(x => x.WalletId == walletId)
+        return await _walletDbContext.Transactions.Where(x => x.WalletId == walletId)
                                            .OrderByDescending(x => x.CreatedOn)
-                                           .ToList();
+                                           .ToListAsync(cancellationToken);
     }
 }
