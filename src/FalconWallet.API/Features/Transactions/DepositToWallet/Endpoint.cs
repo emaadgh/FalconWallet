@@ -15,9 +15,9 @@ public static class Endpoint
             CancellationToken cancellationToken) =>
         {
             await transactionService.DepositAsync(request.WalletId,
-                                                   request.Amount,
-                                                   request.Description,
-                                                   cancellationToken);
+                                                  request.Amount,
+                                                  request.Description,
+                                                  cancellationToken);
 
             return Results.Ok("Deposit added to the wallet");
         }).Validator<DepositToWalletRequest>()

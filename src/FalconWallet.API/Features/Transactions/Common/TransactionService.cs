@@ -12,7 +12,10 @@ internal class TransactionService(WalletService walletService,
     private readonly WalletService _walletService = walletService;
     private readonly WalletDbContext _walletDbContext = walletDbContext;
 
-    public async Task DepositAsync(Guid walletId, decimal amount, string? description, CancellationToken cancellationToken)
+    public async Task DepositAsync(Guid walletId,
+                                   decimal amount,
+                                   string? description,
+                                   CancellationToken cancellationToken)
     {
         await ValidateTransactionAsync(walletId, amount, cancellationToken);
 
@@ -40,7 +43,10 @@ internal class TransactionService(WalletService walletService,
         }
     }
 
-    internal async Task WithdrawAsync(Guid walletId, decimal amount, string? description, CancellationToken cancellationToken)
+    internal async Task WithdrawAsync(Guid walletId,
+                                      decimal amount,
+                                      string? description,
+                                      CancellationToken cancellationToken)
     {
         await ValidateTransactionAsync(walletId, amount, cancellationToken);
 
@@ -68,7 +74,9 @@ internal class TransactionService(WalletService walletService,
         }
     }
 
-    private async Task ValidateTransactionAsync(Guid walletId, decimal amount, CancellationToken cancellationToken)
+    private async Task ValidateTransactionAsync(Guid walletId,
+                                                decimal amount,
+                                                CancellationToken cancellationToken)
     {
         if (!await _walletService.IsWalletAvailable(walletId, cancellationToken))
         {
@@ -82,7 +90,7 @@ internal class TransactionService(WalletService walletService,
     }
 
     public async Task<List<Transaction>> GetTransactionsForWalletAsync(Guid walletId,
-                                                                                 CancellationToken cancellationToken)
+                                                                       CancellationToken cancellationToken)
     {
         if (!await _walletService.IsWalletAvailable(walletId, cancellationToken))
         {
@@ -90,7 +98,7 @@ internal class TransactionService(WalletService walletService,
         }
 
         return await _walletDbContext.Transactions.Where(x => x.WalletId == walletId)
-                                           .OrderByDescending(x => x.CreatedOn)
-                                           .ToListAsync(cancellationToken);
+                                                  .OrderByDescending(x => x.CreatedOn)
+                                                  .ToListAsync(cancellationToken);
     }
 }
