@@ -119,6 +119,29 @@ For local testing, you can create your own `appsettings.json` file in the root d
   }
 }
 ```
+## Database Reset for Testing Purposes
+
+For testing purposes, you can add the following code snippet to your `Program.cs` file. This code will reset the database and its data every time the application is run:
+
+```
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        var context = scope.ServiceProvider.GetService<WalletDbContext>();
+        if (context != null)
+        {
+            await context.Database.EnsureDeletedAsync();
+            await context.Database.MigrateAsync();
+        }
+    }
+    catch (Exception ex)
+    {
+        // Handle any exceptions if necessary
+    }
+}
+```
+Make sure to replace `WalletDbContext` with your actual DbContext class if it's named differently.
 
 ## Creator
 
