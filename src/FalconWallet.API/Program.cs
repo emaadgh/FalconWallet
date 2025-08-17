@@ -32,7 +32,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddValidatorsFromAssemblies(domainAssemblies);
 
-builder.Services.AddAutoMapper(domainAssemblies);
+builder.Services.AddAutoMapper(cfg => { }, domainAssemblies);
 
 var app = builder.Build();
 

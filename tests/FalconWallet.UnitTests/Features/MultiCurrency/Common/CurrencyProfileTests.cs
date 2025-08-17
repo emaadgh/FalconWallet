@@ -2,15 +2,18 @@
 using FalconWallet.API.Features.MultiCurrency.Common;
 using FalconWallet.API.Features.MultiCurrency.CreateCurrency;
 using FluentAssertions;
+using Microsoft.Extensions.Logging;
 
 namespace FalconWallet.UnitTests.Features.MultiCurrency.Common;
 public class CurrencyProfileTests
 {
     private readonly IMapper _mapper;
+    private readonly ILoggerFactory _loggerFactory;
 
     public CurrencyProfileTests()
     {
-        var config = new MapperConfiguration(cfg => cfg.AddProfile<CurrencyProfile>());
+        _loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+        var config = new MapperConfiguration(cfg => cfg.AddProfile<CurrencyProfile>(), _loggerFactory);
         _mapper = config.CreateMapper();
     }
 
